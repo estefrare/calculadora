@@ -18,23 +18,25 @@ const operatorFunction = function () {
 }
 
 const resultFunction = function (event) {
-
-  const options = {
-    baseURL: 'http://localhost:3000/',
-    timeout: 25000,
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
-
   secondValue = parseFloat(display.innerText)
-
-  fetch(`http://localhost:3000/api/result/${firstValue}/${secondValue}/${selectedOperator}`, options)
-    .then(res => res.json())
-    .then(data => {
-      display.innerText = data.result
-    })
+  let result
+  switch (selectedOperator) {
+    case '*':
+      result = firstValue * secondValue
+      break
+    case '+':
+      result = firstValue + secondValue
+      break
+    case '-':
+      result = firstValue - secondValue
+      break
+    case '/':
+      result = firstValue / secondValue
+      break
+    default:
+      break
+  }
+  display.innerText = result
 }
 
 const pointFunction = function () {
